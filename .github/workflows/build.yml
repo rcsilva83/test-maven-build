@@ -18,10 +18,8 @@ jobs:
 
       - name: Debug
         run: |
-          echo "${{ github.workspace }}/.m2/repository"
           echo ${HOME}
-          ls -la ${HOME}
-          ls -la ${HOME}/.m2
+          ls -la ~
 
       - name: Cache Maven
         uses: actions/cache@v4
@@ -39,4 +37,4 @@ jobs:
         
       - name: Debug (post-build)
         run: |
-          ls ${{ github.workspace }}/.m2/repository
+          ls -la ~/.m2/repository
