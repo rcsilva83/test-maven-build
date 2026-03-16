@@ -16,17 +16,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Debug
-        run: |
-          id -u
-          id -g
-          echo $(realpath ~)
-          ls -la /root/
-
       - name: Cache Maven
         uses: actions/cache@v4
         with:
-          path: ~/.m2/repository
+          path: /root/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
@@ -36,9 +29,3 @@ jobs:
 
       - name: Run tests
         run: mvn test
-        
-      - name: Debug (post-build)
-        run: |
-          ls -la /root
-          ls -la /root/.m2
-          ls -la /root/.m2/repository
