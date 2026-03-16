@@ -10,15 +10,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: maven:3.9-eclipse-temurin-17
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
 
       - name: Cache Maven
         uses: actions/cache@v4
