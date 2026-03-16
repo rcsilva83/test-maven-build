@@ -16,6 +16,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Debug
+        run: |
+          echo "${{ github.workspace }}/.m2/repository"
+          echo ${HOME}
+          ls -la ${HOME}
+          ls -la ${HOME}/.m2
+
       - name: Cache Maven
         uses: actions/cache@v4
         with:
@@ -29,3 +36,7 @@ jobs:
 
       - name: Run tests
         run: mvn test -Dmaven.repo.local=${{ github.workspace }}/.m2/repository
+        
+      - name: Debug (post-build)
+        run: |
+          ls ${{ github.workspace }}/.m2/repository
