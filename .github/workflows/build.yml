@@ -18,6 +18,8 @@ jobs:
 
       - name: Debug
         run: |
+          id -u
+          id -g
           echo ${HOME}
           ls -la ~
 
