@@ -26,16 +26,16 @@ jobs:
       - name: Cache Maven
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}/.m2/repository
+          path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
 
       - name: Build with Maven
-        run: mvn clean package -Dmaven.repo.local=${{ github.workspace }}/.m2/repository
+        run: mvn clean package
 
       - name: Run tests
-        run: mvn test -Dmaven.repo.local=${{ github.workspace }}/.m2/repository
+        run: mvn test
         
       - name: Debug (post-build)
         run: |
