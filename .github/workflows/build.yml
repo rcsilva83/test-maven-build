@@ -20,8 +20,8 @@ jobs:
         run: |
           id -u
           id -g
-          echo ${HOME}
-          ls -la ~
+          echo $(realpath ~)
+          ls -la /root/
 
       - name: Cache Maven
         uses: actions/cache@v4
@@ -39,4 +39,6 @@ jobs:
         
       - name: Debug (post-build)
         run: |
-          ls -la ~/.m2/repository
+          ls -la /root
+          ls -la /root/.m2
+          ls -la /root/.m2/repository
